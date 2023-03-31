@@ -1,0 +1,38 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color: rgba(255, 255, 255, 0.87);
+  background: -webkit-linear-gradient(to left, #240b36, #c31432);
+  background: linear-gradient(
+      to left,
+      rgba(36, 11, 54, 1),
+      rgba(195, 20, 50, 0.8)
+    ),
+    url(assets/wave.svg) no-repeat bottom;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+.animate {
+  width: 24px;
+  height: 24px;
+  animation: spin 5s linear infinite;
+}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
