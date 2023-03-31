@@ -86,7 +86,7 @@ const Converter: FC = () => {
       <ConverterHeader currencyRates={currencyRates} />
       <Box
         display='flex'
-        bgcolor='white'
+        bgcolor='#dfd5d5'
         width={{ xs: '80%', md: '40%' }}
         margin='0 auto'
         padding={{ xs: '15px', sm: '40px', md: '100px' }}

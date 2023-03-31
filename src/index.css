@@ -36,3 +36,10 @@ body {
     transform: rotate(360deg);
   }
 }
+
+.flag {
+  margin-right: 10px;
+  width: 16px;
+  height: 16px;
+  object-fit: cover;
+}

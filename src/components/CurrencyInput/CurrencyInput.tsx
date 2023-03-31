@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { CurrencyInputProps } from '../../interfaces/input';
 import { FormControl, Box, MenuItem } from '@mui/material';
+import { useFlagImage } from '../../hooks/useFlagImage';
 import TextField from '@mui/material/TextField';
 import Select from '@mui/material/Select';
 
@@ -11,11 +12,15 @@ const CurrencyInput: FC<CurrencyInputProps> = ({
   onAmountChange,
   onCurrencyChange,
 }) => {
-  const options = currencies.map((option) => (
-    <MenuItem key={option} value={option}>
-      {option}
-    </MenuItem>
-  ));
+  const options = currencies.map((option) => {
+    const { flagImageUrl } = useFlagImage(option);
+    return (
+      <MenuItem key={option} value={option}>
+        <img alt='flag' src={flagImageUrl} className='flag' />
+        {option}
+      </MenuItem>
+    );
+  });
 
   return (
     <Box
@@ -27,21 +32,33 @@ const CurrencyInput: FC<CurrencyInputProps> = ({
     >
       <FormControl sx={{ width: { xs: '100%', sm: '70%' } }}>
         <TextField
+          InputLabelProps={{ style: { color: '#000', fontSize: 20 } }}
           id='outlined-basic'
           variant='outlined'
-          color='info'
+          color='secondary'
           type='number'
           label={currency}
-          sx={{ backgroundColor: 'white' }}
+          sx={{ backgroundColor: '#dfd5d5' }}
           value={currencyAmount === 0 ? '' : currencyAmount}
           onChange={onAmountChange}
         />
       </FormControl>
       <FormControl sx={{ width: { xs: '100%', sm: '30%' } }}>
         <Select
+          MenuProps={{
+            PaperProps: {
+              sx: {
+                backgroundColor: '#bdabab',
+                '& .MuiMenuItem-root:hover': {
+                  backgroundColor: '#dfd5d5',
+                },
+              },
+            },
+          }}
           value={currency}
           onChange={onCurrencyChange}
           variant='outlined'
+          color='secondary'
           sx={{
             fontSize: '20px',
           }}
