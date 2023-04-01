@@ -7,6 +7,7 @@ import ConverterHeader from './ConverterHeader';
 import { getCurrencies } from '../../api/api';
 
 const Converter: FC = () => {
+  const [isError, setIsError] = useState<Error>();
   const [currencyRates, setCurrencyRates] = useState<ResponseObject>({});
   const [firstCurrencyAmount, setFirstCurrencyAmount] = useState<number>(0);
   const [secondCurrencyAmount, setSecondCurrencyAmount] = useState<number>(0);
@@ -18,7 +19,7 @@ const Converter: FC = () => {
       const rates = await getCurrencies();
       setCurrencyRates(rates);
     };
-    fetchCurrency().catch((error) => console.log(error));
+    fetchCurrency().catch((error) => setIsError(error));
   }, []);
 
   const calculateAmount = (
@@ -90,7 +91,7 @@ const Converter: FC = () => {
         width={{ xs: '80%', md: '40%' }}
         margin='0 auto'
         padding={{ xs: '15px', sm: '40px', md: '100px' }}
-        borderRadius='30px'
+        borderRadius={{ xs: '10px', sm: '30px' }}
         flexDirection='column'
         alignItems='center'
         gap={3}
@@ -106,7 +107,6 @@ const Converter: FC = () => {
         <div className='animate'>
           <CurrencyExchangeIcon sx={{ color: '#240b36' }} />
         </div>
-
         <CurrencyInput
           currencies={Object.keys(currencyRates)}
           onAmountChange={secondCurrencyAmountChangeHandler}
@@ -114,6 +114,9 @@ const Converter: FC = () => {
           onCurrencyChange={secondCurrencyChangeHandler}
           currencyAmount={secondCurrencyAmount}
         />
+        {isError && (
+          <p style={{ fontSize: 20, color: 'red' }}>{isError.message}</p>
+        )}
       </Box>
     </Box>
   );

@@ -4,6 +4,7 @@ import { FormControl, Box, MenuItem } from '@mui/material';
 import { useFlagImage } from '../../hooks/useFlagImage';
 import TextField from '@mui/material/TextField';
 import Select from '@mui/material/Select';
+import { onKeyPress } from '../../helpers/helpers';
 
 const CurrencyInput: FC<CurrencyInputProps> = ({
   currency,
@@ -33,6 +34,7 @@ const CurrencyInput: FC<CurrencyInputProps> = ({
       <FormControl sx={{ width: { xs: '100%', sm: '70%' } }}>
         <TextField
           InputLabelProps={{ style: { color: '#000', fontSize: 20 } }}
+          onKeyPress={onKeyPress}
           id='outlined-basic'
           variant='outlined'
           color='secondary'
